@@ -476,23 +476,44 @@
       width: 100%;
       overflow: hidden;
       line-height: 0;
+      font-size: 0;
       z-index: 5;
+      margin-top: -2px;
+      margin-bottom: -2px;
     }
     .divider svg {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100px;
       vertical-align: bottom;
+      position: relative;
+      z-index: 1;
     }
     .divider-dark-to-light {
-      margin-top: -3px;
-      margin-bottom: -3px;
       background: var(--marrom-profundo);
     }
-    .divider-light-to-dark {
-      margin-top: -3px;
-      margin-bottom: -3px;
+    .divider-dark-to-light::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 8px;
       background: var(--bege-claro);
+      z-index: 2;
+    }
+    .divider-light-to-dark {
+      background: var(--bege-claro);
+    }
+    .divider-light-to-dark::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: var(--marrom-profundo);
+      z-index: 2;
     }
 
     /* ── Animated Pattern Backgrounds ── */
@@ -1345,9 +1366,10 @@
 
     <!-- Divider: Marrom → Creme -->
     <div class="divider divider-dark-to-light" aria-hidden="true">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 C360,80 1080,80 1440,0 L1440,80 L0,80 Z" fill="#EFEBD4"/>
-        <path d="M0,20 C480,90 960,60 1440,20 L1440,80 L0,80 Z" fill="#EFEBD4" opacity="0.5"/>
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="60" width="1440" height="40" fill="#EFEBD4"/>
+        <path d="M0,0 C360,80 1080,80 1440,0 L1440,100 L0,100 Z" fill="#EFEBD4"/>
+        <path d="M0,20 C480,90 960,60 1440,20 L1440,100 L0,100 Z" fill="#EFEBD4" opacity="0.5"/>
       </svg>
     </div>
 
@@ -1418,9 +1440,10 @@
 
     <!-- Divider: Creme → Marrom -->
     <div class="divider divider-light-to-dark" aria-hidden="true">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 C240,70 720,80 1440,0 L1440,80 L0,80 Z" fill="#1e1510"/>
-        <path d="M0,30 C600,90 1200,50 1440,30 L1440,80 L0,80 Z" fill="#1e1510" opacity="0.5"/>
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="60" width="1440" height="40" fill="#1e1510"/>
+        <path d="M0,0 C240,70 720,80 1440,0 L1440,100 L0,100 Z" fill="#1e1510"/>
+        <path d="M0,30 C600,90 1200,50 1440,30 L1440,100 L0,100 Z" fill="#1e1510" opacity="0.5"/>
       </svg>
     </div>
 
@@ -1461,9 +1484,10 @@
 
     <!-- Divider: Marrom → Creme -->
     <div class="divider divider-dark-to-light" aria-hidden="true">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 C480,90 960,60 1440,0 L1440,80 L0,80 Z" fill="#EFEBD4"/>
-        <path d="M0,25 C300,80 1140,85 1440,25 L1440,80 L0,80 Z" fill="#EFEBD4" opacity="0.5"/>
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="60" width="1440" height="40" fill="#EFEBD4"/>
+        <path d="M0,0 C480,90 960,60 1440,0 L1440,100 L0,100 Z" fill="#EFEBD4"/>
+        <path d="M0,25 C300,80 1140,85 1440,25 L1440,100 L0,100 Z" fill="#EFEBD4" opacity="0.5"/>
       </svg>
     </div>
 
@@ -1516,9 +1540,10 @@
 
     <!-- Divider: Creme → Marrom -->
     <div class="divider divider-light-to-dark" aria-hidden="true">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 C360,80 1080,80 1440,0 L1440,80 L0,80 Z" fill="#1e1510"/>
-        <path d="M0,35 C720,85 1080,70 1440,35 L1440,80 L0,80 Z" fill="#1e1510" opacity="0.5"/>
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="60" width="1440" height="40" fill="#1e1510"/>
+        <path d="M0,0 C360,80 1080,80 1440,0 L1440,100 L0,100 Z" fill="#1e1510"/>
+        <path d="M0,35 C720,85 1080,70 1440,35 L1440,100 L0,100 Z" fill="#1e1510" opacity="0.5"/>
       </svg>
     </div>
 
@@ -1555,9 +1580,10 @@
 
     <!-- Divider: Marrom → Creme -->
     <div class="divider divider-dark-to-light" aria-hidden="true">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 C240,85 1200,70 1440,0 L1440,80 L0,80 Z" fill="#EFEBD4"/>
-        <path d="M0,20 C480,80 960,90 1440,20 L1440,80 L0,80 Z" fill="#EFEBD4" opacity="0.5"/>
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="60" width="1440" height="40" fill="#EFEBD4"/>
+        <path d="M0,0 C240,85 1200,70 1440,0 L1440,100 L0,100 Z" fill="#EFEBD4"/>
+        <path d="M0,20 C480,80 960,90 1440,20 L1440,100 L0,100 Z" fill="#EFEBD4" opacity="0.5"/>
       </svg>
     </div>
 
@@ -1609,9 +1635,10 @@
 
     <!-- Divider: Creme → Marrom -->
     <div class="divider divider-light-to-dark" aria-hidden="true">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 C600,90 840,70 1440,0 L1440,80 L0,80 Z" fill="#1e1510"/>
-        <path d="M0,30 C360,80 1080,85 1440,30 L1440,80 L0,80 Z" fill="#1e1510" opacity="0.5"/>
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="60" width="1440" height="40" fill="#1e1510"/>
+        <path d="M0,0 C600,90 840,70 1440,0 L1440,100 L0,100 Z" fill="#1e1510"/>
+        <path d="M0,30 C360,80 1080,85 1440,30 L1440,100 L0,100 Z" fill="#1e1510" opacity="0.5"/>
       </svg>
     </div>
 
