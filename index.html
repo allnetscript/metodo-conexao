@@ -482,57 +482,161 @@
       display: block;
       width: 100%;
       height: auto;
+      vertical-align: bottom;
     }
     .divider-dark-to-light {
-      margin-top: -2px;
-      margin-bottom: -2px;
+      margin-top: -3px;
+      margin-bottom: -3px;
       background: var(--marrom-profundo);
     }
     .divider-light-to-dark {
-      margin-top: -2px;
-      margin-bottom: -2px;
+      margin-top: -3px;
+      margin-bottom: -3px;
       background: var(--bege-claro);
     }
 
-    /* ── Decorative Backgrounds ── */
-    .section-deco {
+    /* ── Animated Pattern Backgrounds ── */
+    .pattern-bg {
       position: absolute;
+      inset: 0;
       pointer-events: none;
       z-index: 0;
+      overflow: hidden;
     }
-    .deco-circle {
-      border-radius: 50%;
-      opacity: 0.04;
-      filter: blur(80px);
+
+    /* Pattern: floating dots drift upward */
+    .pattern-dots {
+      background-image: radial-gradient(circle, currentColor 1.2px, transparent 1.2px);
+      background-size: 32px 32px;
+      animation: patternDrift 20s linear infinite;
     }
-    .deco-ring {
-      border-radius: 50%;
-      border: 1px solid;
-      opacity: 0.05;
-      filter: blur(40px);
+
+    /* Pattern: diagonal lines scroll */
+    .pattern-lines {
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 28px,
+        currentColor 28px,
+        currentColor 29px
+      );
+      animation: patternSlide 15s linear infinite;
     }
-    .deco-dots {
-      background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
-      background-size: 24px 24px;
+
+    /* Pattern: grid pulses */
+    .pattern-grid {
+      background-image:
+        linear-gradient(currentColor 0.5px, transparent 0.5px),
+        linear-gradient(90deg, currentColor 0.5px, transparent 0.5px);
+      background-size: 48px 48px;
+      animation: patternDrift 25s linear infinite;
+    }
+
+    /* Pattern: hexagonal / honeycomb dots */
+    .pattern-hex {
+      background-image:
+        radial-gradient(circle, currentColor 1px, transparent 1px),
+        radial-gradient(circle, currentColor 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-position: 0 0, 20px 20px;
+      animation: patternFloat 18s ease-in-out infinite;
+    }
+
+    /* Pattern: cross hatch */
+    .pattern-cross {
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 20px,
+          currentColor 20px,
+          currentColor 20.5px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 20px,
+          currentColor 20px,
+          currentColor 20.5px
+        );
+      animation: patternSlide 20s linear infinite;
+    }
+
+    /* Pattern: large circles */
+    .pattern-circles {
+      background-image:
+        radial-gradient(circle 80px, transparent 79px, currentColor 79px, currentColor 80px, transparent 80px);
+      background-size: 120px 120px;
+      animation: patternDrift 22s linear infinite;
+    }
+
+    @keyframes patternDrift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-32px, -32px); }
+    }
+    @keyframes patternSlide {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(40px, 0); }
+    }
+    @keyframes patternFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-10px, -10px) scale(1.02); }
+    }
+
+    /* Per-section pattern styles */
+    .services .pattern-bg {
+      color: var(--marrom-escuro);
       opacity: 0.03;
     }
-    .deco-grid {
-      background-image:
-        linear-gradient(currentColor 1px, transparent 1px),
-        linear-gradient(90deg, currentColor 1px, transparent 1px);
-      background-size: 60px 60px;
-      opacity: 0.02;
+    .about .pattern-bg {
+      color: var(--bege-claro);
+      opacity: 0.025;
     }
-    .deco-diagonal {
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 40px,
-        currentColor 40px,
-        currentColor 41px
-      );
-      opacity: 0.02;
+    .pillars .pattern-bg {
+      color: var(--marrom-escuro);
+      opacity: 0.025;
     }
+    .process .pattern-bg {
+      color: var(--bege-claro);
+      opacity: 0.03;
+    }
+    .testimonials .pattern-bg {
+      color: var(--marrom-escuro);
+      opacity: 0.03;
+    }
+    .cta .pattern-bg {
+      color: var(--dourado);
+      opacity: 0.03;
+    }
+
+    /* Glow orbs per section (blurred, animated) */
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+      animation: orbFloat 12s ease-in-out infinite;
+    }
+    .glow-orb-2 { animation-delay: -4s; animation-duration: 15s; }
+    .glow-orb-3 { animation-delay: -8s; animation-duration: 18s; }
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.04; }
+      33% { transform: translate(30px, -20px) scale(1.1); opacity: 0.06; }
+      66% { transform: translate(-20px, 15px) scale(0.95); opacity: 0.03; }
+    }
+
+    /* Section-specific orbs */
+    .services .glow-orb { background: var(--marrom-medio); width: 400px; height: 400px; top: -100px; right: -100px; }
+    .services .glow-orb-2 { background: var(--dourado); width: 350px; height: 350px; bottom: -80px; left: -80px; }
+    .about .glow-orb { background: var(--dourado); width: 500px; height: 500px; top: -150px; left: -150px; }
+    .about .glow-orb-2 { background: var(--marrom-medio); width: 300px; height: 300px; bottom: -80px; right: -80px; }
+    .pillars .glow-orb { background: var(--marrom-medio); width: 450px; height: 450px; bottom: -120px; right: -120px; }
+    .pillars .glow-orb-2 { background: var(--dourado); width: 300px; height: 300px; top: -80px; left: -80px; }
+    .process .glow-orb { background: var(--dourado); width: 500px; height: 500px; top: -150px; right: -150px; }
+    .process .glow-orb-2 { background: var(--marrom-medio); width: 350px; height: 350px; bottom: -100px; left: -100px; }
+    .testimonials .glow-orb { background: var(--marrom-medio); width: 400px; height: 400px; top: -100px; left: -100px; }
+    .testimonials .glow-orb-2 { background: var(--dourado); width: 300px; height: 300px; bottom: -80px; right: -80px; }
 
     /* ── Services ── */
     .services {
@@ -540,20 +644,6 @@
       position: relative;
       background: var(--bege-claro);
       overflow: hidden;
-    }
-    .services .deco-circle-1 {
-      width: 500px; height: 500px;
-      top: -150px; right: -150px;
-      background: var(--marrom-medio);
-    }
-    .services .deco-circle-2 {
-      width: 400px; height: 400px;
-      bottom: -120px; left: -120px;
-      background: var(--dourado);
-    }
-    .services .deco-dots-1 {
-      top: 0; left: 0; right: 0; bottom: 0;
-      color: var(--marrom-escuro);
     }
     .services-header { margin-bottom: 72px; }
     .services-grid {
@@ -650,15 +740,6 @@
       padding: 140px 0;
       position: relative;
       overflow: hidden;
-    }
-    .about .deco-ring-1 {
-      width: 600px; height: 600px;
-      top: -200px; left: -200px;
-      border-color: var(--dourado);
-    }
-    .about .deco-diagonal-1 {
-      top: 0; left: 0; right: 0; bottom: 0;
-      color: var(--bege-claro);
     }
     .about-bg {
       position: absolute;
@@ -775,15 +856,6 @@
       overflow: hidden;
       background: var(--bege-claro);
     }
-    .pillars .deco-grid-1 {
-      top: 0; left: 0; right: 0; bottom: 0;
-      color: var(--marrom-escuro);
-    }
-    .pillars .deco-ring-1 {
-      width: 450px; height: 450px;
-      bottom: -150px; right: -150px;
-      border-color: var(--marrom-medio);
-    }
     .pillars-bg {
       display: none;
     }
@@ -879,15 +951,6 @@
       background: var(--marrom-profundo);
       overflow: hidden;
     }
-    .process .deco-circle-1 {
-      width: 550px; height: 550px;
-      top: -180px; right: -180px;
-      background: var(--dourado);
-    }
-    .process .deco-dots-1 {
-      top: 0; left: 0; right: 0; bottom: 0;
-      color: var(--bege-claro);
-    }
     .process-header {
       text-align: center;
       margin-bottom: 72px;
@@ -950,16 +1013,6 @@
 
     /* ── Testimonials ── */
     .testimonials { padding: 140px 0; background: var(--bege-claro); position: relative; overflow: hidden; }
-    .testimonials .deco-ring-1 {
-      width: 500px; height: 500px;
-      top: -180px; left: -180px;
-      border-color: var(--marrom-medio);
-    }
-    .testimonials .deco-circle-1 {
-      width: 350px; height: 350px;
-      bottom: -100px; right: -100px;
-      background: var(--dourado);
-    }
     .testimonials-header {
       text-align: center;
       margin-bottom: 72px;
@@ -1301,9 +1354,9 @@
     <!-- Services -->
     <section class="services section-light" id="servicos" aria-labelledby="services-heading">
       <!-- Decorative elements -->
-      <div class="section-deco deco-circle deco-circle-1" aria-hidden="true"></div>
-      <div class="section-deco deco-circle deco-circle-2" aria-hidden="true"></div>
-      <div class="section-deco deco-dots deco-dots-1" aria-hidden="true"></div>
+      <div class="pattern-bg pattern-dots" aria-hidden="true"></div>
+      <div class="glow-orb" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb-2" aria-hidden="true"></div>
       <div class="container" style="position:relative;z-index:2;">
         <div class="services-header reveal">
           <p class="section-label">O Que Fazemos</p>
@@ -1373,8 +1426,9 @@
 
     <!-- About -->
     <section class="about" id="sobre" aria-labelledby="about-heading">
-      <div class="section-deco deco-ring deco-ring-1" aria-hidden="true"></div>
-      <div class="section-deco deco-diagonal deco-diagonal-1" style="position:absolute;top:0;left:0;right:0;bottom:0;" aria-hidden="true"></div>
+      <div class="pattern-bg pattern-lines" aria-hidden="true"></div>
+      <div class="glow-orb" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb-2" aria-hidden="true"></div>
       <div class="about-bg" aria-hidden="true">
         <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=60&auto=format" alt="" width="1920" height="1080" loading="lazy" />
       </div>
@@ -1415,8 +1469,9 @@
 
     <!-- Pillars -->
     <section class="pillars section-light" id="pilares" aria-labelledby="pillars-heading">
-      <div class="section-deco deco-grid deco-grid-1" style="position:absolute;top:0;left:0;right:0;bottom:0;" aria-hidden="true"></div>
-      <div class="section-deco deco-ring deco-ring-1" aria-hidden="true"></div>
+      <div class="pattern-bg pattern-grid" aria-hidden="true"></div>
+      <div class="glow-orb" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb-2" aria-hidden="true"></div>
       <div class="pillars-bg" aria-hidden="true">
         <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&q=60&auto=format" alt="" width="1920" height="1080" loading="lazy" />
       </div>
@@ -1469,8 +1524,9 @@
 
     <!-- Process -->
     <section class="process" id="processo" aria-labelledby="process-heading">
-      <div class="section-deco deco-circle deco-circle-1" aria-hidden="true"></div>
-      <div class="section-deco deco-dots deco-dots-1" style="position:absolute;top:0;left:0;right:0;bottom:0;" aria-hidden="true"></div>
+      <div class="pattern-bg pattern-cross" aria-hidden="true"></div>
+      <div class="glow-orb" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb-2" aria-hidden="true"></div>
       <div class="container" style="position:relative;z-index:2;">
         <div class="process-header reveal">
           <p class="section-label">Como Trabalhamos</p>
@@ -1507,8 +1563,9 @@
 
     <!-- Testimonials -->
     <section class="testimonials section-light" id="depoimentos" aria-labelledby="testimonials-heading">
-      <div class="section-deco deco-ring deco-ring-1" aria-hidden="true"></div>
-      <div class="section-deco deco-circle deco-circle-1" aria-hidden="true"></div>
+      <div class="pattern-bg pattern-hex" aria-hidden="true"></div>
+      <div class="glow-orb" aria-hidden="true"></div>
+      <div class="glow-orb glow-orb-2" aria-hidden="true"></div>
       <div class="container" style="position:relative;z-index:2;">
         <div class="testimonials-header reveal">
           <p class="section-label">Depoimentos</p>
@@ -1559,8 +1616,9 @@
     </div>
 
     <!-- CTA -->
-    <section class="cta" id="contacto" aria-labelledby="cta-heading">
-      <div class="container">
+    <section class="cta" id="contacto" aria-labelledby="cta-heading" style="position:relative;overflow:hidden;">
+      <div class="pattern-bg pattern-circles" aria-hidden="true"></div>
+      <div class="container" style="position:relative;z-index:2;">
         <div class="cta-box reveal">
           <p class="section-label">Pronto para Come&ccedil;ar?</p>
           <h2 class="section-title" id="cta-heading">Vamos criar a sua<br>presen&ccedil;a digital ideal</h2>
