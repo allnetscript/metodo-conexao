@@ -470,18 +470,86 @@
       50% { transform: translateY(-8px); }
     }
 
+    /* ── Section Dividers ── */
+    .divider {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      z-index: 5;
+    }
+    .divider svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .divider-dark-to-light {
+      margin-top: -1px;
+      background: var(--marrom-profundo);
+    }
+    .divider-light-to-dark {
+      margin-top: -1px;
+      background: var(--bege-claro);
+    }
+
+    /* ── Decorative Backgrounds ── */
+    .section-deco {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .deco-circle {
+      border-radius: 50%;
+      opacity: 0.04;
+    }
+    .deco-ring {
+      border-radius: 50%;
+      border: 1px solid;
+      opacity: 0.06;
+    }
+    .deco-dots {
+      background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+      background-size: 24px 24px;
+      opacity: 0.03;
+    }
+    .deco-grid {
+      background-image:
+        linear-gradient(currentColor 1px, transparent 1px),
+        linear-gradient(90deg, currentColor 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.02;
+    }
+    .deco-diagonal {
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        currentColor 40px,
+        currentColor 41px
+      );
+      opacity: 0.02;
+    }
+
     /* ── Services ── */
     .services {
       padding: 140px 0;
       position: relative;
       background: var(--bege-claro);
+      overflow: hidden;
     }
-    .services::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(50, 36, 23, 0.1), transparent);
+    .services .deco-circle-1 {
+      width: 400px; height: 400px;
+      top: -100px; right: -100px;
+      background: var(--marrom-medio);
+    }
+    .services .deco-circle-2 {
+      width: 300px; height: 300px;
+      bottom: -80px; left: -80px;
+      background: var(--dourado);
+    }
+    .services .deco-dots-1 {
+      top: 0; left: 0; right: 0; bottom: 0;
+      color: var(--marrom-escuro);
     }
     .services-header { margin-bottom: 72px; }
     .services-grid {
@@ -578,6 +646,15 @@
       padding: 140px 0;
       position: relative;
       overflow: hidden;
+    }
+    .about .deco-ring-1 {
+      width: 500px; height: 500px;
+      top: -150px; left: -150px;
+      border-color: var(--dourado);
+    }
+    .about .deco-diagonal-1 {
+      top: 0; left: 0; right: 0; bottom: 0;
+      color: var(--bege-claro);
     }
     .about-bg {
       position: absolute;
@@ -694,6 +771,15 @@
       overflow: hidden;
       background: var(--bege-claro);
     }
+    .pillars .deco-grid-1 {
+      top: 0; left: 0; right: 0; bottom: 0;
+      color: var(--marrom-escuro);
+    }
+    .pillars .deco-ring-1 {
+      width: 350px; height: 350px;
+      bottom: -100px; right: -100px;
+      border-color: var(--marrom-medio);
+    }
     .pillars-bg {
       display: none;
     }
@@ -787,6 +873,16 @@
       padding: 140px 0;
       position: relative;
       background: var(--marrom-profundo);
+      overflow: hidden;
+    }
+    .process .deco-circle-1 {
+      width: 450px; height: 450px;
+      top: -120px; right: -120px;
+      background: var(--dourado);
+    }
+    .process .deco-dots-1 {
+      top: 0; left: 0; right: 0; bottom: 0;
+      color: var(--bege-claro);
     }
     .process-header {
       text-align: center;
@@ -849,7 +945,17 @@
     }
 
     /* ── Testimonials ── */
-    .testimonials { padding: 140px 0; background: var(--bege-claro); }
+    .testimonials { padding: 140px 0; background: var(--bege-claro); position: relative; overflow: hidden; }
+    .testimonials .deco-ring-1 {
+      width: 400px; height: 400px;
+      top: -120px; left: -120px;
+      border-color: var(--marrom-medio);
+    }
+    .testimonials .deco-circle-1 {
+      width: 250px; height: 250px;
+      bottom: -60px; right: -60px;
+      background: var(--dourado);
+    }
     .testimonials-header {
       text-align: center;
       margin-bottom: 72px;
@@ -1180,9 +1286,21 @@
       </div>
     </div>
 
+    <!-- Divider: Marrom → Creme -->
+    <div class="divider divider-dark-to-light" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C360,80 1080,80 1440,0 L1440,80 L0,80 Z" fill="#EFEBD4"/>
+        <path d="M0,20 C480,90 960,60 1440,20 L1440,80 L0,80 Z" fill="#EFEBD4" opacity="0.5"/>
+      </svg>
+    </div>
+
     <!-- Services -->
     <section class="services section-light" id="servicos" aria-labelledby="services-heading">
-      <div class="container">
+      <!-- Decorative elements -->
+      <div class="section-deco deco-circle deco-circle-1" aria-hidden="true"></div>
+      <div class="section-deco deco-circle deco-circle-2" aria-hidden="true"></div>
+      <div class="section-deco deco-dots deco-dots-1" aria-hidden="true"></div>
+      <div class="container" style="position:relative;z-index:2;">
         <div class="services-header reveal">
           <p class="section-label">O Que Fazemos</p>
           <h2 class="section-title" id="services-heading">Solu&ccedil;&otilde;es completas para<br>a sua marca digital</h2>
@@ -1241,8 +1359,18 @@
       </div>
     </section>
 
+    <!-- Divider: Creme → Marrom -->
+    <div class="divider divider-light-to-dark" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C240,70 720,80 1440,0 L1440,80 L0,80 Z" fill="#1e1510"/>
+        <path d="M0,30 C600,90 1200,50 1440,30 L1440,80 L0,80 Z" fill="#1e1510" opacity="0.5"/>
+      </svg>
+    </div>
+
     <!-- About -->
     <section class="about" id="sobre" aria-labelledby="about-heading">
+      <div class="section-deco deco-ring deco-ring-1" aria-hidden="true"></div>
+      <div class="section-deco deco-diagonal deco-diagonal-1" style="position:absolute;top:0;left:0;right:0;bottom:0;" aria-hidden="true"></div>
       <div class="about-bg" aria-hidden="true">
         <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=60&auto=format" alt="" width="1920" height="1080" loading="lazy" />
       </div>
@@ -1273,8 +1401,18 @@
       </div>
     </section>
 
+    <!-- Divider: Marrom → Creme -->
+    <div class="divider divider-dark-to-light" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C480,90 960,60 1440,0 L1440,80 L0,80 Z" fill="#EFEBD4"/>
+        <path d="M0,25 C300,80 1140,85 1440,25 L1440,80 L0,80 Z" fill="#EFEBD4" opacity="0.5"/>
+      </svg>
+    </div>
+
     <!-- Pillars -->
     <section class="pillars section-light" id="pilares" aria-labelledby="pillars-heading">
+      <div class="section-deco deco-grid deco-grid-1" style="position:absolute;top:0;left:0;right:0;bottom:0;" aria-hidden="true"></div>
+      <div class="section-deco deco-ring deco-ring-1" aria-hidden="true"></div>
       <div class="pillars-bg" aria-hidden="true">
         <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&q=60&auto=format" alt="" width="1920" height="1080" loading="lazy" />
       </div>
@@ -1317,9 +1455,19 @@
       </div>
     </section>
 
+    <!-- Divider: Creme → Marrom -->
+    <div class="divider divider-light-to-dark" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C360,80 1080,80 1440,0 L1440,80 L0,80 Z" fill="#1e1510"/>
+        <path d="M0,35 C720,85 1080,70 1440,35 L1440,80 L0,80 Z" fill="#1e1510" opacity="0.5"/>
+      </svg>
+    </div>
+
     <!-- Process -->
     <section class="process" id="processo" aria-labelledby="process-heading">
-      <div class="container">
+      <div class="section-deco deco-circle deco-circle-1" aria-hidden="true"></div>
+      <div class="section-deco deco-dots deco-dots-1" style="position:absolute;top:0;left:0;right:0;bottom:0;" aria-hidden="true"></div>
+      <div class="container" style="position:relative;z-index:2;">
         <div class="process-header reveal">
           <p class="section-label">Como Trabalhamos</p>
           <h2 class="section-title" id="process-heading">Um processo pensado<br>para resultados</h2>
@@ -1345,9 +1493,19 @@
       </div>
     </section>
 
+    <!-- Divider: Marrom → Creme -->
+    <div class="divider divider-dark-to-light" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C240,85 1200,70 1440,0 L1440,80 L0,80 Z" fill="#EFEBD4"/>
+        <path d="M0,20 C480,80 960,90 1440,20 L1440,80 L0,80 Z" fill="#EFEBD4" opacity="0.5"/>
+      </svg>
+    </div>
+
     <!-- Testimonials -->
     <section class="testimonials section-light" id="depoimentos" aria-labelledby="testimonials-heading">
-      <div class="container">
+      <div class="section-deco deco-ring deco-ring-1" aria-hidden="true"></div>
+      <div class="section-deco deco-circle deco-circle-1" aria-hidden="true"></div>
+      <div class="container" style="position:relative;z-index:2;">
         <div class="testimonials-header reveal">
           <p class="section-label">Depoimentos</p>
           <h2 class="section-title" id="testimonials-heading">O que os nossos<br>clientes dizem</h2>
@@ -1387,6 +1545,14 @@
         </div>
       </div>
     </section>
+
+    <!-- Divider: Creme → Marrom -->
+    <div class="divider divider-light-to-dark" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C600,90 840,70 1440,0 L1440,80 L0,80 Z" fill="#1e1510"/>
+        <path d="M0,30 C360,80 1080,85 1440,30 L1440,80 L0,80 Z" fill="#1e1510" opacity="0.5"/>
+      </svg>
+    </div>
 
     <!-- CTA -->
     <section class="cta" id="contacto" aria-labelledby="cta-heading">
