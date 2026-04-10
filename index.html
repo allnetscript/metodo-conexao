@@ -1256,82 +1256,103 @@
     .testimonials .container { position: relative; z-index: 2; }
     .testi-quote-mark {
       font-family: var(--font-display);
-      font-size: 14rem;
+      font-size: 18rem;
       font-style: italic;
-      color: rgba(136, 90, 53, 0.1);
+      color: rgba(136, 90, 53, 0.07);
       line-height: 0.6;
       position: absolute;
-      top: -20px;
-      left: -20px;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
       pointer-events: none;
       font-weight: 600;
+      z-index: 1;
     }
+    .testi-stage { z-index: 2; }
     .testi-stage {
       position: relative;
-      max-width: 980px;
       margin: 0 auto;
-      padding: 80px 0;
+      padding: 60px 0 20px;
+      overflow: hidden;
     }
-    .testi-slide {
-      display: none;
-      animation: fadeSwap 0.8s var(--ease-out-expo);
-    }
-    .testi-slide.active { display: block; }
-    @keyframes fadeSwap {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .testi-stars {
+    .testi-track {
       display: flex;
-      gap: 6px;
-      margin-bottom: 36px;
-      justify-content: center;
+      transition: transform 0.9s var(--ease-out-expo);
+      will-change: transform;
     }
-    .testi-stars .star { width: 16px; height: 16px; }
-    .testi-quote {
+    .testi-page {
+      flex: 0 0 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      padding: 20px 4px;
+    }
+    .testi-card {
+      background: #ffffff;
+      border: 1px solid rgba(42, 29, 18, 0.08);
+      border-radius: 22px;
+      padding: 38px 32px 34px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s ease, border-color 0.4s ease;
+      box-shadow: 0 2px 0 rgba(42, 29, 18, 0.02);
+    }
+    .testi-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px -25px rgba(42, 29, 18, 0.18);
+      border-color: rgba(197, 162, 116, 0.35);
+    }
+    .testi-card .testi-stars {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 22px;
+      justify-content: flex-start;
+    }
+    .testi-card .testi-stars .star { width: 13px; height: 13px; }
+    .testi-card .testi-quote {
       font-family: var(--font-display);
-      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      font-size: 1.05rem;
       font-weight: 400;
       font-style: italic;
-      line-height: 1.35;
+      line-height: 1.55;
       color: var(--marrom-escuro);
-      text-align: center;
-      letter-spacing: -0.015em;
-      margin-bottom: 56px;
-      max-width: 880px;
-      margin-left: auto;
-      margin-right: auto;
+      letter-spacing: -0.005em;
+      margin: 0 0 32px;
+      flex: 1;
     }
-    .testi-author {
+    .testi-card .testi-author {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 18px;
+      gap: 14px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(42, 29, 18, 0.08);
     }
-    .testi-avatar {
-      width: 58px;
-      height: 58px;
+    .testi-card .testi-avatar {
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
       background: var(--marrom-escuro);
-      border: 2px solid var(--dourado);
+      border: 1.5px solid var(--dourado);
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-display);
-      font-size: 1.15rem;
+      font-size: 0.92rem;
       font-weight: 600;
       color: var(--dourado);
+      flex-shrink: 0;
     }
-    .testi-author-info { text-align: left; }
-    .testi-author-info strong {
+    .testi-card .testi-author-info strong {
       display: block;
-      font-size: 1rem;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
       font-weight: 600;
       color: var(--marrom-escuro);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
-    .testi-author-info span {
-      font-size: 0.82rem;
+    .testi-card .testi-author-info span {
+      font-size: 0.76rem;
       font-weight: 400;
       color: rgba(42, 29, 18, 0.55);
     }
@@ -1576,6 +1597,9 @@
       .stats-grid { grid-template-columns: 1fr 1fr; gap: 40px 0; }
       .stat:nth-child(2)::after { display: none; }
     }
+    @media (max-width: 960px) {
+      .testi-page { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    }
     @media (max-width: 768px) {
       .cursor, .cursor-dot, .mouse-glow { display: none !important; }
       body { cursor: auto; }
@@ -1621,8 +1645,11 @@
       .process-step::before { left: 28px; top: 56px; }
       .step-num { font-size: 2.8rem; }
       .testimonials { padding: 100px 0; }
-      .testi-stage { padding: 40px 0; }
-      .testi-quote { font-size: 1.3rem; }
+      .testi-stage { padding: 40px 0 10px; }
+      .testi-page { grid-template-columns: 1fr; gap: 20px; }
+      .testi-card { padding: 30px 26px; }
+      .testi-card .testi-quote { font-size: 1rem; }
+      .testi-quote-mark { font-size: 12rem; top: 20px; }
       .testi-logos-grid { gap: 30px; }
       .cta-inner { padding: 100px 0; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -2070,101 +2097,103 @@
           <p class="lead">A satisfa&ccedil;&atilde;o dos nossos clientes &eacute; a nossa melhor refer&ecirc;ncia. Estes s&atilde;o alguns dos resultados que constru&iacute;mos juntos.</p>
         </header>
 
+        <span class="testi-quote-mark" aria-hidden="true">&ldquo;</span>
+
         <div class="testi-stage reveal">
-          <span class="testi-quote-mark" aria-hidden="true">&ldquo;</span>
+          <div class="testi-track">
+            <div class="testi-page">
+              <article class="testi-card">
+                <div class="testi-stars" role="img" aria-label="5 estrelas">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                </div>
+                <p class="testi-quote">O M&eacute;todo Conex&atilde;o transformou completamente a nossa presen&ccedil;a online. Em apenas 3 meses, triplic&aacute;mos o alcance e as vendas cresceram 40%.</p>
+                <div class="testi-author">
+                  <div class="testi-avatar">AS</div>
+                  <div class="testi-author-info">
+                    <strong>Ana Silva</strong>
+                    <span>CEO, Boutique Elegance</span>
+                  </div>
+                </div>
+              </article>
 
-          <div class="testi-slide active">
-            <div class="testi-stars" role="img" aria-label="5 estrelas">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+              <article class="testi-card">
+                <div class="testi-stars" role="img" aria-label="5 estrelas">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                </div>
+                <p class="testi-quote">Profissionalismo, criatividade e resultados consistentes. A equipa entende exatamente o que precisamos e entrega sempre acima das expectativas.</p>
+                <div class="testi-author">
+                  <div class="testi-avatar">RM</div>
+                  <div class="testi-author-info">
+                    <strong>Ricardo Mendes</strong>
+                    <span>Diretor, TechSolutions</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="testi-card">
+                <div class="testi-stars" role="img" aria-label="5 estrelas">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                </div>
+                <p class="testi-quote">O website e o sistema CRM que desenvolveram para n&oacute;s mudaram a forma como gerimos o neg&oacute;cio. Investimento que se pagou em poucos meses.</p>
+                <div class="testi-author">
+                  <div class="testi-avatar">CP</div>
+                  <div class="testi-author-info">
+                    <strong>Carla Pinto</strong>
+                    <span>Fundadora, Studio Bella</span>
+                  </div>
+                </div>
+              </article>
             </div>
-            <p class="testi-quote">O M&eacute;todo Conex&atilde;o transformou completamente a nossa presen&ccedil;a online. Em apenas 3 meses, triplicamos o nosso alcance e as vendas cresceram 40%. A equipa &eacute; brilhante.</p>
-            <div class="testi-author">
-              <div class="testi-avatar">AS</div>
-              <div class="testi-author-info">
-                <strong>Ana Silva</strong>
-                <span>CEO, Boutique Elegance</span>
-              </div>
+
+            <div class="testi-page">
+              <article class="testi-card">
+                <div class="testi-stars" role="img" aria-label="5 estrelas">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                </div>
+                <p class="testi-quote">Uma consulta gratuita que se tornou numa parceria de longo prazo. A estrat&eacute;gia de conte&uacute;do posicionou-nos como refer&ecirc;ncia no nosso setor em Portugal.</p>
+                <div class="testi-author">
+                  <div class="testi-avatar">JF</div>
+                  <div class="testi-author-info">
+                    <strong>Jo&atilde;o Ferreira</strong>
+                    <span>S&oacute;cio, Casa Lumin&aacute;ria</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="testi-card">
+                <div class="testi-stars" role="img" aria-label="5 estrelas">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                </div>
+                <p class="testi-quote">As campanhas de Google Ads e Meta Ads superaram todas as metas. ROI de 6x no primeiro trimestre. Relat&oacute;rios transparentes fazem toda a diferen&ccedil;a.</p>
+                <div class="testi-author">
+                  <div class="testi-avatar">MR</div>
+                  <div class="testi-author-info">
+                    <strong>Mariana Rocha</strong>
+                    <span>Marketing Manager, Atelier Verde</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="testi-card">
+                <div class="testi-stars" role="img" aria-label="5 estrelas">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                </div>
+                <p class="testi-quote">Entregaram um rebranding completo, novo site e automa&ccedil;&otilde;es que pouparam horas todas as semanas. Perceberam de verdade o nosso nicho.</p>
+                <div class="testi-author">
+                  <div class="testi-avatar">TC</div>
+                  <div class="testi-author-info">
+                    <strong>Tiago Costa</strong>
+                    <span>Fundador, Norte Gourmet</span>
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
+        </div>
 
-          <div class="testi-slide">
-            <div class="testi-stars" role="img" aria-label="5 estrelas">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="testi-quote">Profissionalismo, criatividade e resultados consistentes. A equipa entende exatamente o que precisamos e entrega sempre acima das expectativas. Recomendo vivamente.</p>
-            <div class="testi-author">
-              <div class="testi-avatar">RM</div>
-              <div class="testi-author-info">
-                <strong>Ricardo Mendes</strong>
-                <span>Diretor, TechSolutions</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-slide">
-            <div class="testi-stars" role="img" aria-label="5 estrelas">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="testi-quote">O website e o sistema CRM que desenvolveram para n&oacute;s mudaram completamente a forma como gerimos o neg&oacute;cio. Investimento que se pagou em poucos meses.</p>
-            <div class="testi-author">
-              <div class="testi-avatar">CP</div>
-              <div class="testi-author-info">
-                <strong>Carla Pinto</strong>
-                <span>Fundadora, Studio Bella</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-slide">
-            <div class="testi-stars" role="img" aria-label="5 estrelas">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="testi-quote">Fiz&eacute;mos uma consulta gratuita que se tornou numa parceria de longo prazo. A estrat&eacute;gia de conte&uacute;do que desenvolveram posicionou-nos como refer&ecirc;ncia no nosso setor em Portugal.</p>
-            <div class="testi-author">
-              <div class="testi-avatar">JF</div>
-              <div class="testi-author-info">
-                <strong>Jo&atilde;o Ferreira</strong>
-                <span>S&oacute;cio, Casa Lumin&aacute;ria</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-slide">
-            <div class="testi-stars" role="img" aria-label="5 estrelas">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="testi-quote">As campanhas de Google Ads e Meta Ads superaram todas as metas. ROI de 6x no primeiro trimestre. O acompanhamento semanal e os relat&oacute;rios transparentes fazem toda a diferen&ccedil;a.</p>
-            <div class="testi-author">
-              <div class="testi-avatar">MR</div>
-              <div class="testi-author-info">
-                <strong>Mariana Rocha</strong>
-                <span>Marketing Manager, Atelier Verde</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-slide">
-            <div class="testi-stars" role="img" aria-label="5 estrelas">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="testi-quote">Procur&aacute;vamos uma ag&ecirc;ncia que percebesse de verdade o nosso nicho. O M&eacute;todo Conex&atilde;o entregou um rebranding completo, novo site e automa&ccedil;&otilde;es que pouparam horas todas as semanas.</p>
-            <div class="testi-author">
-              <div class="testi-avatar">TC</div>
-              <div class="testi-author-info">
-                <strong>Tiago Costa</strong>
-                <span>Fundador, Norte Gourmet</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-nav" role="tablist">
-            <button class="testi-dot active" data-slide="0" aria-label="Depoimento 1"></button>
-            <button class="testi-dot" data-slide="1" aria-label="Depoimento 2"></button>
-            <button class="testi-dot" data-slide="2" aria-label="Depoimento 3"></button>
-            <button class="testi-dot" data-slide="3" aria-label="Depoimento 4"></button>
-            <button class="testi-dot" data-slide="4" aria-label="Depoimento 5"></button>
-            <button class="testi-dot" data-slide="5" aria-label="Depoimento 6"></button>
-          </div>
+        <div class="testi-nav" role="tablist">
+          <button class="testi-dot active" data-slide="0" aria-label="Grupo 1"></button>
+          <button class="testi-dot" data-slide="1" aria-label="Grupo 2"></button>
         </div>
 
         <div class="testi-logos reveal">
@@ -2375,19 +2404,21 @@
     }, { threshold: 0.4 });
     counters.forEach(c => counterObs.observe(c));
 
-    // ── Testimonial carousel ──
-    const slides = document.querySelectorAll('.testi-slide');
+    // ── Testimonial carousel (3 cards per page, sliding) ──
+    const testiTrack = document.querySelector('.testi-track');
+    const testiPages = document.querySelectorAll('.testi-page');
     const dots = document.querySelectorAll('.testi-dot');
     let currentSlide = 0;
     let slideTimer;
 
     function showSlide(idx) {
-      slides.forEach((s, i) => s.classList.toggle('active', i === idx));
-      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      if (!testiTrack || testiPages.length === 0) return;
       currentSlide = idx;
+      testiTrack.style.transform = `translateX(-${idx * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
     }
     function nextSlide() {
-      showSlide((currentSlide + 1) % slides.length);
+      showSlide((currentSlide + 1) % testiPages.length);
     }
     function startTimer() {
       stopTimer();
@@ -2403,7 +2434,14 @@
         startTimer();
       });
     });
-    startTimer();
+    if (testiPages.length > 0) startTimer();
+
+    // Pause on hover
+    const testiStage = document.querySelector('.testi-stage');
+    if (testiStage) {
+      testiStage.addEventListener('mouseenter', stopTimer);
+      testiStage.addEventListener('mouseleave', startTimer);
+    }
 
     // ── Subtle parallax for hero orbs ──
     const orb1 = document.querySelector('.hero-orb-1');
