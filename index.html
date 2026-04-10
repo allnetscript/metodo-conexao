@@ -506,38 +506,6 @@
       animation: fadeUp 1s var(--ease-out-expo) 0.85s forwards;
     }
 
-    /* Hero scroll cue */
-    .scroll-cue {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.66rem;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(239, 235, 212, 0.4);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      opacity: 0;
-      animation: fadeUp 1s var(--ease-out-expo) 1.1s forwards;
-    }
-    .scroll-cue::after {
-      content: '';
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(180deg, var(--dourado), transparent);
-      animation: scrollDown 2.4s ease-in-out infinite;
-    }
-    @keyframes scrollDown {
-      0% { transform: scaleY(0); transform-origin: top; }
-      50% { transform: scaleY(1); transform-origin: top; }
-      51% { transform-origin: bottom; }
-      100% { transform: scaleY(0); transform-origin: bottom; }
-    }
-
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to { opacity: 1; transform: translateY(0); }
@@ -1368,6 +1336,15 @@
       background: var(--marrom-profundo);
       overflow: hidden;
     }
+    .cta::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 220px;
+      background: linear-gradient(180deg, transparent, var(--marrom-profundo));
+      pointer-events: none;
+      z-index: 1;
+    }
     .cta-inner {
       padding: 160px 0;
       position: relative;
@@ -1444,7 +1421,6 @@
     /* ── Footer ── */
     footer {
       padding: 100px 0 40px;
-      border-top: 1px solid rgba(239, 235, 212, 0.05);
       background: var(--marrom-profundo);
       position: relative;
     }
@@ -1541,7 +1517,7 @@
       body { cursor: auto; }
       .btn, .nav-links a, .nav-logo, .service-card, .pillar-card, .process-step,
       .testi-dot, .testi-logo, .footer-col a, .footer-social a, .hamburger,
-      .about-features li, .scroll-cue, .service-link { cursor: auto; }
+      .about-features li, .service-link { cursor: auto; }
       .container, .container-wide { padding: 0 22px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -1660,7 +1636,6 @@
         </div>
       </div>
 
-      <div class="scroll-cue" aria-hidden="true">Descobrir</div>
     </section>
 
     <!-- ── STATS BAR ── -->
