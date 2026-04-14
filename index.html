@@ -481,19 +481,19 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.25fr 1fr;
+      grid-template-columns: 1.15fr 1fr;
       gap: 80px;
       align-items: center;
     }
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 7.2vw, 7.4rem);
+      font-size: clamp(2.6rem, 6.2vw, 6.4rem);
       font-weight: 400;
-      line-height: 0.92;
-      letter-spacing: -0.04em;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
       color: var(--bege-claro);
       font-variation-settings: "opsz" 144, "SOFT" 100;
-      margin: 0 0 40px;
+      margin: 0 0 36px;
     }
     .hero-visual {
       position: relative;
@@ -502,11 +502,11 @@
     }
     .hero-visual-frame {
       position: relative;
-      aspect-ratio: 4 / 5;
-      border-radius: 24px;
+      aspect-ratio: 5 / 6;
+      border-radius: 20px;
       overflow: hidden;
-      border: 1px solid rgba(197, 162, 116, 0.25);
-      box-shadow: 0 40px 120px -30px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(197, 162, 116, 0.08) inset;
+      border: 1px solid rgba(197, 162, 116, 0.2);
+      box-shadow: 0 50px 120px -40px rgba(0, 0, 0, 0.75);
       background: linear-gradient(135deg, #2a1d12 0%, #14100c 100%);
     }
     .hero-visual-frame img {
@@ -514,33 +514,43 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      filter: saturate(0.95) contrast(1.05);
+      filter: saturate(0.85) contrast(1.08) brightness(0.85) sepia(0.15);
     }
     .hero-visual-frame::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 40%, rgba(20, 16, 12, 0.55) 100%);
+      background:
+        linear-gradient(180deg, rgba(20, 16, 12, 0.15) 0%, transparent 30%, rgba(20, 16, 12, 0.7) 100%),
+        linear-gradient(135deg, rgba(197, 162, 116, 0.08), transparent 50%);
+      pointer-events: none;
+    }
+    .hero-visual-grain {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(197, 162, 116, 0.06) 1px, transparent 1px);
+      background-size: 3px 3px;
+      mix-blend-mode: overlay;
       pointer-events: none;
     }
     .hero-visual-badge {
       position: absolute;
-      bottom: 22px;
-      left: 22px;
-      right: 22px;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
       display: flex;
       align-items: center;
       gap: 14px;
-      padding: 16px 20px;
-      background: rgba(20, 16, 12, 0.72);
+      padding: 14px 18px;
+      background: rgba(20, 16, 12, 0.75);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(197, 162, 116, 0.2);
-      border-radius: 14px;
+      border: 1px solid rgba(197, 162, 116, 0.22);
+      border-radius: 12px;
       z-index: 2;
     }
     .hero-visual-badge-dot {
-      width: 10px; height: 10px;
+      width: 9px; height: 9px;
       border-radius: 50%;
       background: #4ade80;
       box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
@@ -549,44 +559,16 @@
     }
     .hero-visual-badge-text strong {
       display: block;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--bege-claro);
       font-weight: 600;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
     .hero-visual-badge-text span {
       display: block;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: rgba(239, 235, 212, 0.55);
       margin-top: 2px;
-    }
-    .hero-visual-float {
-      position: absolute;
-      top: -18px;
-      right: -18px;
-      padding: 14px 18px;
-      background: var(--dourado);
-      color: var(--marrom-profundo);
-      border-radius: 14px;
-      font-family: var(--font-display);
-      z-index: 2;
-      box-shadow: 0 20px 50px -15px rgba(197, 162, 116, 0.5);
-      transform: rotate(3deg);
-    }
-    .hero-visual-float strong {
-      display: block;
-      font-size: 1.6rem;
-      font-weight: 500;
-      line-height: 1;
-    }
-    .hero-visual-float span {
-      display: block;
-      font-size: 0.68rem;
-      font-family: var(--font-body);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-top: 4px;
-      opacity: 0.7;
     }
     .hero-title em {
       font-style: italic;
@@ -1814,12 +1796,14 @@
         gap: 22px;
         border-bottom: 1px solid rgba(239, 235, 212, 0.06);
       }
-      .hero { padding: 140px 0 100px; min-height: auto; }
-      .hero-grid { grid-template-columns: 1fr; gap: 60px; }
-      .hero-title { font-size: clamp(2.6rem, 11vw, 4.4rem); }
-      .hero-visual-frame { aspect-ratio: 3 / 4; max-width: 480px; margin: 0 auto; }
-      .hero-visual-float { right: 0; top: -14px; padding: 12px 16px; }
-      .hero-visual-float strong { font-size: 1.3rem; }
+      .hero { padding: 130px 0 80px; min-height: auto; }
+      .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+      .hero-title { font-size: clamp(2.2rem, 9vw, 3.4rem); margin: 0 0 28px; }
+      .hero-tag { font-size: 0.62rem; padding: 8px 16px; letter-spacing: 0.14em; margin-bottom: 32px; }
+      .hero-visual-frame { aspect-ratio: 4 / 5; max-width: 440px; margin: 0 auto; }
+      .hero-visual-badge { padding: 12px 14px; }
+      .hero-visual-badge-text strong { font-size: 0.75rem; }
+      .hero-visual-badge-text span { font-size: 0.66rem; }
       .stats-grid { grid-template-columns: 1fr; gap: 50px 0; }
       .stat { padding: 0; text-align: center; }
       .stat::after { display: none !important; }
@@ -1939,12 +1923,9 @@
           </div>
 
           <div class="hero-visual" aria-hidden="true">
-            <div class="hero-visual-float">
-              <strong>+40%</strong>
-              <span>Convers&atilde;o</span>
-            </div>
             <div class="hero-visual-frame">
-              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80&auto=format&fit=crop" alt="Equipa de marketing digital em reuni&atilde;o estrat&eacute;gica" loading="eager" fetchpriority="high" />
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=85&auto=format&fit=crop" alt="Dashboard de an&aacute;lise de marketing digital" loading="eager" fetchpriority="high" />
+              <div class="hero-visual-grain"></div>
               <div class="hero-visual-badge">
                 <span class="hero-visual-badge-dot"></span>
                 <div class="hero-visual-badge-text">
