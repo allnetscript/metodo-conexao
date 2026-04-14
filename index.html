@@ -56,7 +56,7 @@
       /* Light backgrounds */
       --bg-claro: #faf9f5;
       --bg-creme: #f1ede3;
-      --bege-claro: #EFEBD4;
+      --bege-claro: #3a1f12;
       --bege-creme: #f5f1da;
       --borda-suave: rgba(42, 29, 18, 0.1);
       --borda-media: rgba(42, 29, 18, 0.15);
@@ -212,16 +212,16 @@
     }
 
     /* ── Light section overrides ── */
-    .section-light { background: var(--bege-claro); color: var(--marrom-escuro); }
+    .section-light { background: var(--bege-claro); color: #efebd4; }
     .section-light .display-1,
     .section-light .display-2,
-    .section-light .display-3 { color: var(--marrom-escuro); }
+    .section-light .display-3 { color: #efebd4; }
     .section-light .display-1 em,
-    .section-light .display-2 em { color: var(--marrom-medio); }
-    .section-light .eyebrow { color: var(--marrom-medio); }
-    .section-light .eyebrow::before { background: var(--marrom-medio); }
-    .section-light .eyebrow-num { color: var(--marrom-medio); }
-    .section-light .lead { color: rgba(42, 29, 18, 0.62); }
+    .section-light .display-2 em { color: var(--dourado); }
+    .section-light .eyebrow { color: var(--dourado); }
+    .section-light .eyebrow::before { background: var(--dourado); }
+    .section-light .eyebrow-num { color: var(--dourado); }
+    .section-light .lead { color: rgba(239, 235, 212, 0.62); }
 
     /* ── Buttons ── */
     .btn {
@@ -269,12 +269,12 @@
       color: var(--dourado);
     }
     .section-light .btn-outline {
-      color: var(--marrom-escuro);
-      border-color: rgba(42, 29, 18, 0.22);
+      color: #efebd4;
+      border-color: rgba(239, 235, 212, 0.22);
     }
     .section-light .btn-outline:hover {
-      border-color: var(--marrom-medio);
-      color: var(--marrom-medio);
+      border-color: var(--dourado);
+      color: var(--dourado);
     }
     .btn-arrow {
       width: 22px; height: 22px;
@@ -556,8 +556,8 @@
       animation: fadeUp 1s var(--ease-out-expo) 1s forwards;
       width: 100%;
       max-width: 100%;
-      contain: size layout;
-      height: calc(1em * 1.4 + 36px);
+      contain: inline-size layout;
+      line-height: 1.5;
       -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
               mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
     }
@@ -578,6 +578,8 @@
       display: inline-flex;
       align-items: center;
       gap: 60px;
+      line-height: 1.5;
+      padding-bottom: 0.12em;
     }
     .hero-marquee-track span::after {
       content: '';
@@ -683,47 +685,6 @@
       color: rgba(42, 29, 18, 0.5);
     }
 
-    /* ── Marquee ── */
-    .marquee {
-      padding: 36px 0;
-      overflow: hidden;
-      background: var(--bg-claro);
-      position: relative;
-    }
-    .marquee::before, .marquee::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 200px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .marquee::before { left: 0; background: linear-gradient(90deg, var(--bg-claro), transparent); }
-    .marquee::after { right: 0; background: linear-gradient(-90deg, var(--bg-claro), transparent); }
-    .marquee-track {
-      display: flex;
-      gap: 60px;
-      animation: marquee 36s linear infinite;
-      width: max-content;
-    }
-    .marquee-item {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 400;
-      font-style: italic;
-      color: rgba(42, 29, 18, 0.08);
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 60px;
-      letter-spacing: -0.02em;
-    }
-    .marquee-item .star { width: 18px; height: 18px; opacity: 0.4; }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
     /* ── Section dividers (curve only, simpler now) ── */
     .divider {
       position: relative;
@@ -784,7 +745,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, rgba(42, 29, 18, 0.06) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(239, 235, 212, 0.06) 1px, transparent 1px);
       background-size: 36px 36px;
       pointer-events: none;
       animation: patternDrift 30s linear infinite;
@@ -1115,8 +1076,8 @@
           -45deg,
           transparent,
           transparent 40px,
-          rgba(42, 29, 18, 0.025) 40px,
-          rgba(42, 29, 18, 0.025) 41px
+          rgba(239, 235, 212, 0.05) 40px,
+          rgba(239, 235, 212, 0.05) 41px
         );
       pointer-events: none;
     }
@@ -1125,26 +1086,26 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0;
-      border-top: 1px solid rgba(42, 29, 18, 0.12);
+      border-top: 1px solid rgba(239, 235, 212, 0.12);
     }
     .pillar-card {
       padding: 56px 32px 64px;
       position: relative;
       cursor: none;
       transition: background 0.5s ease, transform 0.5s var(--ease-out-expo);
-      border-right: 1px solid rgba(42, 29, 18, 0.12);
-      border-bottom: 1px solid rgba(42, 29, 18, 0.12);
+      border-right: 1px solid rgba(239, 235, 212, 0.12);
+      border-bottom: 1px solid rgba(239, 235, 212, 0.12);
     }
     .pillar-card:last-child { border-right: none; }
     .pillar-card:hover {
-      background: rgba(136, 90, 53, 0.04);
+      background: rgba(239, 235, 212, 0.03);
     }
     .pillar-num {
       font-family: var(--font-display);
       font-style: italic;
       font-size: 0.95rem;
-      color: var(--marrom-medio);
-      opacity: 0.6;
+      color: var(--dourado);
+      opacity: 0.7;
       margin-bottom: 32px;
       display: block;
     }
@@ -1156,7 +1117,7 @@
       align-items: center;
       justify-content: center;
       transition: transform 0.6s var(--ease-out-expo), color 0.4s ease;
-      color: var(--marrom-medio);
+      color: var(--dourado);
     }
     .pillar-card:hover .pillar-icon {
       transform: scale(1.1) rotate(-6deg);
@@ -1176,14 +1137,14 @@
       font-weight: 500;
       line-height: 1.1;
       margin-bottom: 14px;
-      color: var(--marrom-escuro);
+      color: #efebd4;
       letter-spacing: -0.02em;
     }
     .pillar-card p {
       font-size: 0.9rem;
       font-weight: 400;
       line-height: 1.7;
-      color: rgba(42, 29, 18, 0.6);
+      color: rgba(239, 235, 212, 0.6);
     }
 
     /* ── PROCESS (Vertical Timeline) ── */
@@ -1307,7 +1268,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, rgba(42, 29, 18, 0.05) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(239, 235, 212, 0.05) 1px, transparent 1px);
       background-size: 32px 32px;
       pointer-events: none;
     }
@@ -1415,14 +1376,14 @@
       width: 36px;
       height: 4px;
       border-radius: 4px;
-      background: rgba(42, 29, 18, 0.15);
+      background: rgba(239, 235, 212, 0.2);
       border: none;
       cursor: none;
       transition: background 0.4s ease, width 0.5s var(--ease-out-expo);
       padding: 0;
     }
     .testi-dot.active {
-      background: var(--marrom-medio);
+      background: var(--dourado);
       width: 60px;
     }
 
@@ -1430,7 +1391,7 @@
     .testi-logos {
       margin-top: 100px;
       padding-top: 60px;
-      border-top: 1px solid rgba(42, 29, 18, 0.1);
+      border-top: 1px solid rgba(239, 235, 212, 0.1);
       text-align: center;
     }
     .testi-logos-label {
@@ -1438,7 +1399,7 @@
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(42, 29, 18, 0.45);
+      color: rgba(239, 235, 212, 0.45);
       margin-bottom: 36px;
     }
     .testi-logos-grid {
@@ -1453,7 +1414,7 @@
       font-size: 1.5rem;
       font-weight: 500;
       font-style: italic;
-      color: rgba(42, 29, 18, 0.4);
+      color: rgba(239, 235, 212, 0.4);
       letter-spacing: -0.02em;
       transition: color 0.4s ease, transform 0.5s var(--ease-out-expo);
       cursor: none;
@@ -1963,20 +1924,12 @@
       </div>
     </section>
 
-    <!-- ── MARQUEE ── -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span class="marquee-item">Marketing Digital <span class="star"></span> Branding <span class="star"></span> Redes Sociais <span class="star"></span> Websites <span class="star"></span> Sistemas <span class="star"></span> Estrat&eacute;gia <span class="star"></span> Conex&atilde;o <span class="star"></span></span>
-        <span class="marquee-item">Marketing Digital <span class="star"></span> Branding <span class="star"></span> Redes Sociais <span class="star"></span> Websites <span class="star"></span> Sistemas <span class="star"></span> Estrat&eacute;gia <span class="star"></span> Conex&atilde;o <span class="star"></span></span>
-      </div>
-    </div>
-
     <!-- Divider: dark → light -->
     <div class="divider divider-dark-to-light" aria-hidden="true">
       <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0" y="60" width="1440" height="40" fill="#EFEBD4"/>
-        <path d="M0,0 C360,80 1080,80 1440,0 L1440,100 L0,100 Z" fill="#EFEBD4"/>
-        <path d="M0,20 C480,90 960,60 1440,20 L1440,100 L0,100 Z" fill="#EFEBD4" opacity="0.5"/>
+        <rect x="0" y="60" width="1440" height="40" fill="#3a1f12"/>
+        <path d="M0,0 C360,80 1080,80 1440,0 L1440,100 L0,100 Z" fill="#3a1f12"/>
+        <path d="M0,20 C480,90 960,60 1440,20 L1440,100 L0,100 Z" fill="#3a1f12" opacity="0.5"/>
       </svg>
     </div>
 
@@ -2127,9 +2080,9 @@
     <!-- Divider: dark → light -->
     <div class="divider divider-dark-to-light" aria-hidden="true">
       <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0" y="60" width="1440" height="40" fill="#EFEBD4"/>
-        <path d="M0,0 C480,90 960,60 1440,0 L1440,100 L0,100 Z" fill="#EFEBD4"/>
-        <path d="M0,25 C300,80 1140,85 1440,25 L1440,100 L0,100 Z" fill="#EFEBD4" opacity="0.5"/>
+        <rect x="0" y="60" width="1440" height="40" fill="#3a1f12"/>
+        <path d="M0,0 C480,90 960,60 1440,0 L1440,100 L0,100 Z" fill="#3a1f12"/>
+        <path d="M0,25 C300,80 1140,85 1440,25 L1440,100 L0,100 Z" fill="#3a1f12" opacity="0.5"/>
       </svg>
     </div>
 
@@ -2242,9 +2195,9 @@
     <!-- Divider: dark → light -->
     <div class="divider divider-dark-to-light" aria-hidden="true">
       <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0" y="60" width="1440" height="40" fill="#EFEBD4"/>
-        <path d="M0,0 C240,85 1200,70 1440,0 L1440,100 L0,100 Z" fill="#EFEBD4"/>
-        <path d="M0,20 C480,80 960,90 1440,20 L1440,100 L0,100 Z" fill="#EFEBD4" opacity="0.5"/>
+        <rect x="0" y="60" width="1440" height="40" fill="#3a1f12"/>
+        <path d="M0,0 C240,85 1200,70 1440,0 L1440,100 L0,100 Z" fill="#3a1f12"/>
+        <path d="M0,20 C480,80 960,90 1440,20 L1440,100 L0,100 Z" fill="#3a1f12" opacity="0.5"/>
       </svg>
     </div>
 
