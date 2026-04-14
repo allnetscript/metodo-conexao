@@ -479,96 +479,16 @@
       50% { box-shadow: 0 0 0 8px rgba(197, 162, 116, 0); }
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(2.6rem, 6.2vw, 6.4rem);
+      font-size: clamp(3.2rem, 9vw, 9rem);
       font-weight: 400;
-      line-height: 0.95;
-      letter-spacing: -0.035em;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
       color: var(--bege-claro);
       font-variation-settings: "opsz" 144, "SOFT" 100;
-      margin: 0 0 36px;
-    }
-    .hero-visual {
-      position: relative;
-      opacity: 0;
-      animation: fadeUp 1.2s var(--ease-out-expo) 0.5s forwards;
-    }
-    .hero-visual-frame {
-      position: relative;
-      aspect-ratio: 5 / 6;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(197, 162, 116, 0.2);
-      box-shadow: 0 50px 120px -40px rgba(0, 0, 0, 0.75);
-      background: linear-gradient(135deg, #2a1d12 0%, #14100c 100%);
-    }
-    .hero-visual-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: saturate(0.85) contrast(1.08) brightness(0.85) sepia(0.15);
-    }
-    .hero-visual-frame::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(20, 16, 12, 0.15) 0%, transparent 30%, rgba(20, 16, 12, 0.7) 100%),
-        linear-gradient(135deg, rgba(197, 162, 116, 0.08), transparent 50%);
-      pointer-events: none;
-    }
-    .hero-visual-grain {
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(197, 162, 116, 0.06) 1px, transparent 1px);
-      background-size: 3px 3px;
-      mix-blend-mode: overlay;
-      pointer-events: none;
-    }
-    .hero-visual-badge {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 18px;
-      background: rgba(20, 16, 12, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(197, 162, 116, 0.22);
-      border-radius: 12px;
-      z-index: 2;
-    }
-    .hero-visual-badge-dot {
-      width: 9px; height: 9px;
-      border-radius: 50%;
-      background: #4ade80;
-      box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
-      animation: pulse 2s infinite;
-      flex-shrink: 0;
-    }
-    .hero-visual-badge-text strong {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--bege-claro);
-      font-weight: 600;
-      letter-spacing: 0.01em;
-    }
-    .hero-visual-badge-text span {
-      display: block;
-      font-size: 0.7rem;
-      color: rgba(239, 235, 212, 0.55);
-      margin-top: 2px;
+      margin: 0 0 48px;
+      max-width: 1300px;
     }
     .hero-title em {
       font-style: italic;
@@ -594,12 +514,14 @@
     }
 
     .hero-bottom {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      max-width: 520px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 60px;
+      max-width: 1300px;
     }
     .hero-desc {
+      max-width: 460px;
       font-size: 1.05rem;
       font-weight: 400;
       line-height: 1.7;
@@ -1766,14 +1688,10 @@
       .stat:nth-child(2)::after { display: none; }
     }
     @media (max-width: 1100px) {
-      .hero-grid { gap: 50px; }
       .cta-grid { grid-template-columns: 1fr; gap: 60px; max-width: 640px; }
     }
     @media (max-width: 960px) {
       .testi-page { grid-template-columns: repeat(2, 1fr); gap: 22px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 70px; }
-      .hero-title { font-size: clamp(2.8rem, 8vw, 5rem); }
-      .hero-visual-frame { max-width: 520px; margin: 0 auto; }
     }
     @media (max-width: 768px) {
       .cursor, .cursor-dot, .mouse-glow { display: none !important; }
@@ -1796,14 +1714,8 @@
         gap: 22px;
         border-bottom: 1px solid rgba(239, 235, 212, 0.06);
       }
-      .hero { padding: 130px 0 80px; min-height: auto; }
-      .hero-grid { grid-template-columns: 1fr; gap: 50px; }
-      .hero-title { font-size: clamp(2.2rem, 9vw, 3.4rem); margin: 0 0 28px; }
-      .hero-tag { font-size: 0.62rem; padding: 8px 16px; letter-spacing: 0.14em; margin-bottom: 32px; }
-      .hero-visual-frame { aspect-ratio: 4 / 5; max-width: 440px; margin: 0 auto; }
-      .hero-visual-badge { padding: 12px 14px; }
-      .hero-visual-badge-text strong { font-size: 0.75rem; }
-      .hero-visual-badge-text span { font-size: 0.66rem; }
+      .hero { padding: 140px 0 100px; }
+      .hero-bottom { grid-template-columns: 1fr; gap: 32px; }
       .stats-grid { grid-template-columns: 1fr; gap: 50px 0; }
       .stat { padding: 0; text-align: center; }
       .stat::after { display: none !important; }
@@ -1897,43 +1809,25 @@
       </div>
 
       <div class="container-wide">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <div class="hero-tag">
-              <span class="pulse"></span>
-              Ag&ecirc;ncia de Marketing Digital &middot; Porto
-            </div>
+        <div class="hero-tag">
+          <span class="pulse"></span>
+          Ag&ecirc;ncia de Marketing Digital &middot; Porto
+        </div>
 
-            <h1 class="hero-title">
-              <span class="hero-line"><span>Estrat&eacute;gia</span></span>
-              <span class="hero-line"><span>que <em>conecta,</em></span></span>
-              <span class="hero-line"><span>presen&ccedil;a que <em>converte.</em></span></span>
-            </h1>
+        <h1 class="hero-title">
+          <span class="hero-line"><span>Estrat&eacute;gia</span></span>
+          <span class="hero-line"><span>que <em>conecta,</em></span></span>
+          <span class="hero-line"><span>presen&ccedil;a que <em>converte.</em></span></span>
+        </h1>
 
-            <div class="hero-bottom">
-              <p class="hero-desc">Combinamos criatividade editorial com dados rigorosos para construir marcas que resistem ao tempo.</p>
-              <div class="hero-actions">
-                <a href="#contacto" class="btn btn-primary">
-                  Agendar Consulta
-                  <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-                <a href="#servicos" class="btn btn-outline">Ver Servi&ccedil;os</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="hero-visual" aria-hidden="true">
-            <div class="hero-visual-frame">
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=85&auto=format&fit=crop" alt="Dashboard de an&aacute;lise de marketing digital" loading="eager" fetchpriority="high" />
-              <div class="hero-visual-grain"></div>
-              <div class="hero-visual-badge">
-                <span class="hero-visual-badge-dot"></span>
-                <div class="hero-visual-badge-text">
-                  <strong>Disponibilidade aberta</strong>
-                  <span>Projectos para 2026</span>
-                </div>
-              </div>
-            </div>
+        <div class="hero-bottom">
+          <p class="hero-desc">Somos uma ag&ecirc;ncia de marketing digital que combina criatividade editorial com dados rigorosos para construir marcas que resistem ao tempo.</p>
+          <div class="hero-actions">
+            <a href="#contacto" class="btn btn-primary">
+              Agendar Consulta
+              <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#servicos" class="btn btn-outline">Ver Servi&ccedil;os</a>
           </div>
         </div>
       </div>
