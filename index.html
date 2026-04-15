@@ -851,15 +851,7 @@
       overflow: hidden;
       background: var(--bege-claro);
     }
-    .services::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(239, 235, 212, 0.06) 1px, transparent 1px);
-      background-size: 36px 36px;
-      pointer-events: none;
-      animation: patternDrift 30s linear infinite;
-    }
+    .services::before { display: none; }
     .services .container { position: relative; z-index: 2; }
     .services-bento {
       display: grid;
@@ -1177,20 +1169,7 @@
       overflow: hidden;
       background: var(--bege-claro);
     }
-    .pillars::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(
-          -45deg,
-          transparent,
-          transparent 40px,
-          rgba(239, 235, 212, 0.05) 40px,
-          rgba(239, 235, 212, 0.05) 41px
-        );
-      pointer-events: none;
-    }
+    .pillars::before { display: none; }
     .pillars .container { position: relative; z-index: 2; }
     .pillars-grid {
       display: grid;
@@ -1374,14 +1353,7 @@
       position: relative;
       overflow: hidden;
     }
-    .testimonials::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(239, 235, 212, 0.05) 1px, transparent 1px);
-      background-size: 32px 32px;
-      pointer-events: none;
-    }
+    .testimonials::before { display: none; }
     .testimonials .container { position: relative; z-index: 2; }
     .testi-wrap {
       position: relative;
