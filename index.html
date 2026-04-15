@@ -1380,24 +1380,7 @@
       position: relative;
       cursor: none;
     }
-    .process-step::before {
-      content: '';
-      position: absolute;
-      left: 53px;
-      top: 70px;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: var(--bg-claro);
-      border: 2px solid var(--dourado);
-      transition: transform 0.5s var(--ease-out-expo), background 0.4s ease, box-shadow 0.5s ease;
-      z-index: 2;
-    }
-    .process-step:hover::before {
-      background: var(--dourado);
-      transform: scale(1.4);
-      box-shadow: 0 0 0 8px rgba(197, 162, 116, 0.15);
-    }
+    .process-step::before { display: none; }
     .step-num {
       font-family: var(--font-display);
       font-size: 4.5rem;
@@ -1970,7 +1953,6 @@
       .process { padding: 100px 0; }
       .process-step { grid-template-columns: 70px 1fr; gap: 24px; padding: 36px 0; }
       .process-timeline::before { left: 35px; }
-      .process-step::before { left: 28px; top: 56px; }
       .step-num { font-size: 2.8rem; }
       .testimonials { padding: 100px 0; }
       .testi-stage { padding: 40px 0 10px; }
