@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "metodo-conexao",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "/Users/brenoschepper/Aplicações/metodo-conexao", "-l", "3456"],
+      "port": 3456
+    }
+  ]
+}
