@@ -799,6 +799,60 @@
       color: rgba(42, 29, 18, 0.5);
     }
 
+    /* ── Text Marquee (palavras a deslizar) ── */
+    .marquee {
+      padding: 48px 0;
+      overflow: hidden;
+      background: var(--bg-claro);
+      position: relative;
+      border-top: 1px solid rgba(197, 162, 116, 0.12);
+      border-bottom: 1px solid rgba(197, 162, 116, 0.12);
+    }
+    .marquee::before, .marquee::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 180px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .marquee::before { left: 0; background: linear-gradient(90deg, var(--bg-claro), transparent); }
+    .marquee::after { right: 0; background: linear-gradient(-90deg, var(--bg-claro), transparent); }
+    .marquee-track {
+      display: flex;
+      gap: 60px;
+      animation: marqueeText 42s linear infinite;
+      width: max-content;
+      will-change: transform;
+    }
+    .marquee-item {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(42, 29, 18, 0.12);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      letter-spacing: -0.02em;
+      line-height: 1.4;
+      padding-bottom: 0.12em;
+    }
+    .marquee-item .star {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--dourado);
+      opacity: 0.35;
+      flex-shrink: 0;
+    }
+    @keyframes marqueeText {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
     /* ── Section dividers (curve only, simpler now) ── */
     .divider {
       position: relative;
@@ -2178,6 +2232,14 @@
         </div>
       </div>
     </section>
+
+    <!-- ── TEXT MARQUEE ── -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item">Marketing Digital <span class="star"></span> Branding <span class="star"></span> Redes Sociais <span class="star"></span> Websites <span class="star"></span> Sistemas <span class="star"></span> Estrat&eacute;gia <span class="star"></span> Conex&atilde;o <span class="star"></span></span>
+        <span class="marquee-item">Marketing Digital <span class="star"></span> Branding <span class="star"></span> Redes Sociais <span class="star"></span> Websites <span class="star"></span> Sistemas <span class="star"></span> Estrat&eacute;gia <span class="star"></span> Conex&atilde;o <span class="star"></span></span>
+      </div>
+    </div>
 
     <!-- Divider: dark → light -->
     <div class="divider divider-dark-to-light" aria-hidden="true">
