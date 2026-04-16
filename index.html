@@ -1821,6 +1821,22 @@
       margin-top: 16px;
     }
     .cta-form-success.active { display: block; }
+    .cta-form-error {
+      display: none;
+      padding: 14px 16px;
+      background: rgba(248, 113, 113, 0.1);
+      border: 1px solid rgba(248, 113, 113, 0.3);
+      border-radius: 10px;
+      color: #fca5a5;
+      font-size: 0.9rem;
+      margin-top: 16px;
+    }
+    .cta-form-error a { color: #fca5a5; text-decoration: underline; }
+    .cta-form-error.active { display: block; }
+    .cta-form button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
 
     /* ── Footer ── */
     footer {
@@ -2562,9 +2578,15 @@
               </ul>
             </div>
 
-            <form class="cta-form reveal" id="contactForm" novalidate>
+            <form class="cta-form reveal" id="contactForm" action="https://formsubmit.co/ajax/geral@metodoconexao.pt" method="POST" novalidate>
               <h3>Pedir proposta</h3>
               <p class="cta-form-sub">Preenchimento r&aacute;pido &mdash; menos de 1 minuto.</p>
+
+              <!-- FormSubmit config -->
+              <input type="hidden" name="_subject" value="Novo pedido de proposta — Método Conexão" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
               <div class="row">
                 <div class="field">
@@ -2592,12 +2614,12 @@
                 <label for="cf-servico">Servi&ccedil;o de interesse</label>
                 <select id="cf-servico" name="servico" required>
                   <option value="">Seleccione um servi&ccedil;o</option>
-                  <option value="marketing">Marketing Digital</option>
-                  <option value="redes">Gest&atilde;o de Redes Sociais</option>
-                  <option value="website">Desenvolvimento Web</option>
-                  <option value="branding">Branding</option>
-                  <option value="sistemas">Sistemas &amp; Automa&ccedil;&otilde;es</option>
-                  <option value="outro">Outro</option>
+                  <option value="Marketing Digital">Marketing Digital</option>
+                  <option value="Gestão de Redes Sociais">Gest&atilde;o de Redes Sociais</option>
+                  <option value="Desenvolvimento Web">Desenvolvimento Web</option>
+                  <option value="Branding">Branding</option>
+                  <option value="Sistemas & Automações">Sistemas &amp; Automa&ccedil;&otilde;es</option>
+                  <option value="Outro">Outro</option>
                 </select>
               </div>
 
@@ -2606,9 +2628,10 @@
                 <textarea id="cf-mensagem" name="mensagem" placeholder="Conte-nos sobre o seu projecto..." required></textarea>
               </div>
 
-              <button type="submit">Enviar pedido</button>
+              <button type="submit" id="cfSubmitBtn">Enviar pedido</button>
               <p class="cta-form-note">Ao enviar, aceita que sejamos n&oacute;s a responder-lhe por email.</p>
               <div class="cta-form-success" id="cfSuccess">Obrigado! Recebemos a sua mensagem e voltaremos brevemente.</div>
+              <div class="cta-form-error" id="cfError">N&atilde;o foi poss&iacute;vel enviar. Tente novamente ou contacte-nos directamente por <a href="mailto:geral@metodoconexao.pt">email</a>.</div>
             </form>
           </div>
         </div>
@@ -2822,19 +2845,55 @@
       testiStage.addEventListener('mouseleave', startTimer);
     }
 
-    // ── Contact form ──
+    // ── Contact form (FormSubmit AJAX) ──
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
+      const submitBtn = document.getElementById('cfSubmitBtn');
+      const successEl = document.getElementById('cfSuccess');
+      const errorEl = document.getElementById('cfError');
+      const originalLabel = submitBtn.textContent;
+
+      contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Basic client-side validation
+        if (!contactForm.checkValidity()) {
+          contactForm.reportValidity();
+          return;
+        }
+
+        successEl.classList.remove('active');
+        errorEl.classList.remove('active');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'A enviar...';
+
         const data = Object.fromEntries(new FormData(contactForm).entries());
-        const body = encodeURIComponent(
-          `Nome: ${data.nome}\nEmpresa: ${data.empresa || '—'}\nEmail: ${data.email}\nTelefone: ${data.telefone || '—'}\nServiço: ${data.servico}\n\nMensagem:\n${data.mensagem}`
-        );
-        const subject = encodeURIComponent(`Pedido de proposta — ${data.nome}`);
-        window.location.href = `mailto:geral@metodoconexao.pt?subject=${subject}&body=${body}`;
-        document.getElementById('cfSuccess').classList.add('active');
-        setTimeout(() => contactForm.reset(), 300);
+
+        try {
+          const res = await fetch(contactForm.action, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+          const json = await res.json().catch(() => ({}));
+
+          if (res.ok && (json.success === 'true' || json.success === true)) {
+            successEl.classList.add('active');
+            contactForm.reset();
+            submitBtn.textContent = 'Enviado ✓';
+            setTimeout(() => { submitBtn.textContent = originalLabel; submitBtn.disabled = false; }, 3000);
+          } else {
+            throw new Error(json.message || 'Envio falhou');
+          }
+        } catch (err) {
+          console.error('Contact form error:', err);
+          errorEl.classList.add('active');
+          submitBtn.textContent = originalLabel;
+          submitBtn.disabled = false;
+        }
       });
     }
 
